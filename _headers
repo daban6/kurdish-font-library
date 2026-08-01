@@ -1,0 +1,28 @@
+# Cloudflare Pages response headers.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+# The stylesheet and script are small and change together with the markup;
+# revalidate rather than serve stale chrome against fresh HTML.
+/assets/css/*
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/assets/js/*
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# Regenerated whenever a font changes, so it must not go stale.
+/assets/data/*
+  Cache-Control: public, max-age=300, must-revalidate
+
+/assets/favicon.svg
+  Cache-Control: public, max-age=604800
+
+# Font binaries in the repository are the fallback for the CDN. They are
+# effectively immutable: a change to a font ships as a new version.
+/fonts/*
+  Cache-Control: public, max-age=2592000
+  Access-Control-Allow-Origin: *

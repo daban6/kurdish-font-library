@@ -2,6 +2,9 @@
 
 Kurdish typefaces, packaged for desktop, print and web.
 
+**[fonts.daban.one](https://fonts.daban.one)** — preview them with your own text
+and download.
+
 ## Fonts
 
 | Family | Designer | Weights | Version |
@@ -25,8 +28,8 @@ Every family ships in four formats:
 | `WEB/WOFF2/` | web |
 | `WEB/WOFF/` | web, older browsers |
 
-Download a family from the [releases](https://github.com/daban6/kurdish-font-library/releases),
-or take individual files from `fonts/`.
+Download a family from [fonts.daban.one](https://fonts.daban.one), or take
+individual files from `fonts/`.
 
 ## Licensing
 
