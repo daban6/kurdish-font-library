@@ -1,11 +1,11 @@
 Original font:
 K24
 
-Original creator:
+Original designer:
 RTLtype
 
 Source:
-Unknown.
+Unknown
 
 Archived:
 2026-08-01

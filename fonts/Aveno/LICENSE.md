@@ -1,5 +1,3 @@
-# License
-
 Original font creator:
 Rabar
 
