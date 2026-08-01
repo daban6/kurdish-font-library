@@ -5,8 +5,8 @@
 - Cleaned font metadata
 - Renamed family to K24
 - Fixed OpenType naming
-- fixed style metadata
-- fixed weight metadata
+- Fixed style linking
+- Fixed weight metadata
 - Updated vendor identifier to DABN
 - Added modification credits
 - Packaged as a font family archive

@@ -18,6 +18,8 @@ Performed by Daban (2026):
 ## Format
 
 OpenType TrueType (.ttf)
+OpenType CFF (.otf)
+Web fonts (.woff / .woff2)
 
 ## Weights
 
