@@ -10,7 +10,7 @@ Performed by Daban (2026):
 
 - Renamed family metadata from K24 Kurdish to K24
 - Normalized OpenType name records
-- Fixed style metadata
+- Fixed style linking
 - Fixed weight metadata
 - Updated vendor ID to DABN
 - Added cleanup and packaging metadata
