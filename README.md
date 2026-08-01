@@ -58,37 +58,35 @@ Each font family may include:
 
 ## Repository Structure
 
+```text
 kurdish-font-library/
-│
 ├── fonts/
 │   ├── Lenos/
 │   ├── Aveno/
 │   └── K24/
 │
-├── docs/
-├── previews/
-└── tools/
+├── README.md
+└── LICENSE.md
 
 Each font directory contains:
 
-- README.md — font information and modifications
-- LICENSE.md — attribution and licensing notes
-- SOURCE.md — source and provenance information
-- CHANGELOG.md — packaging history
-
-## Purpose
+README.md — font information and modifications
+LICENSE.md — attribution and licensing notes
+SOURCE.md — source and provenance information
+CHANGELOG.md — packaging history
+Purpose
 
 This project aims to preserve, organize, and distribute Kurdish typefaces
 in a clean and accessible format.
 
-## Credits
+Credits
 
 Original designers retain ownership of their creations.
 
 Packaging, metadata cleanup, and distribution improvements are performed
 by Daban (2026).
 
-## License
+License
 
 Individual font directories contain their own licensing information.
 
