@@ -1,0 +1,14 @@
+# Font source/build files
+*.bak
+*.tmp
+*.sfd
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*~
+.vscode/
+.idea/
