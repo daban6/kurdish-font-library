@@ -15,11 +15,11 @@ Performed by Daban (2026):
 - Updated vendor ID to DABN
 - Added cleanup and packaging metadata
 
-## Format
+## Formats
 
-OpenType TrueType (.ttf)
-OpenType CFF (.otf)
-Web fonts (.woff / .woff2)
+- OpenType TrueType (.ttf)
+- OpenType CFF (.otf)
+- Web fonts (.woff / .woff2)
 
 ## Weights
 
