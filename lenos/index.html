@@ -1,27 +1,41 @@
 <!doctype html>
-<html lang="en">
+<html lang="ckb" dir="rtl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lenos — daban's kurdish fonts</title>
-<meta name="description" content="Lenos by Sirwan Yassin: 9 weights, 682 glyphs, complete Central Kurdish coverage. Preview with your own text and download.">
+<title>Lenos — فۆنتی کوردی</title>
+<meta name="description" content="Lenos لە دیزاینی سیروان یاسین. ٩ ئەستووری، ٦٨٢ پیت، پشتگیریی تەواوی پیتەکانی کوردیی ناوەندی. نموونە ببینە بە نووسینی خۆت و دایبگرە.">
 <link rel="canonical" href="https://fonts.daban.one/lenos/">
-<meta property="og:title" content="Lenos — daban's kurdish fonts">
-<meta property="og:description" content="Lenos by Sirwan Yassin: 9 weights, complete Central Kurdish coverage.">
+<meta property="og:title" content="Lenos — فۆنتی کوردی">
+<meta property="og:description" content="Lenos لە دیزاینی سیروان یاسین. ٩ ئەستووری، پشتگیریی تەواوی پیتەکانی کوردیی ناوەندی.">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="ckb">
 <meta property="og:url" content="https://fonts.daban.one/lenos/">
+<link rel="preload" href="/fonts/Lenos/WEB/WOFF2/Lenos-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Lenos/WEB/WOFF2/Lenos-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<style>
+@font-face {
+  font-family: "Lenos";
+  src: url("/fonts/Lenos/WEB/WOFF2/Lenos-Regular.woff2") format("woff2");
+  font-weight: 400; font-display: swap;
+}
+@font-face {
+  font-family: "Lenos";
+  src: url("/fonts/Lenos/WEB/WOFF2/Lenos-SemiBold.woff2") format("woff2");
+  font-weight: 600; font-display: swap;
+}
+</style>
 </head>
 <body data-page="family" data-family="lenos">
 
 <header class="site-head">
   <div class="wrap">
-    <a class="wordmark" href="/">daban's <span class="dim">kurdish fonts</span></a>
+    <a class="wordmark" href="/">فۆنتی کوردی <span class="dim">دابان</span></a>
     <nav class="site-nav">
-      <a class="btn" href="/about/">About</a>
-      <button class="btn btn-icon" type="button" data-theme-toggle aria-label="Switch theme">☾</button>
+      <a class="btn" href="/about/">دەربارە</a>
+      <button class="btn btn-icon" type="button" data-theme-toggle aria-label="گۆڕینی ڕەنگ">☾</button>
     </nav>
   </div>
 </header>
@@ -29,12 +43,12 @@
 <main>
   <div class="wrap">
     <div class="hero">
-      <a class="back" href="/">← All fonts</a>
+      <a class="back" href="/">→ هەموو فۆنتەکان</a>
       <h1>Lenos</h1>
-      <p>A nine-weight Kurdish typeface with a full weight range, from Thin to Black. The broadest family here, and the one to reach for when you need hierarchy.</p>
-      <p style="margin-top:18px">
-        <a class="btn btn-solid" href="#" data-download>Download Lenos 1.002</a>
-      </p>
+      <p>خێزانێکی فۆنت بە نۆ ئەستووری، لە باریکەوە تا زۆر ئەستوور. فراوانترین خێزانی ئێرەیە و باشترین هەڵبژاردەیە کاتێک پێویستت بە پلەبەندی هەیە لە نێوان سەردێر و ناوەڕۆکدا.</p>
+      <div class="actions">
+        <a class="btn btn-solid" href="#" data-download>داگرتنی Lenos</a>
+      </div>
     </div>
   </div>
 
@@ -44,32 +58,28 @@
     <div data-weights></div>
 
     <section class="section">
-      <h2>Characters</h2>
-      <p class="lede">Struck-through cells are not in this font.</p>
+      <h2>پیتەکان</h2>
+      <p class="lede">پیتەکانی ئەم فۆنتە.</p>
       <div data-glyphs></div>
     </section>
 
     <section class="section">
-      <h2>Details</h2>
-      <p class="lede">Read from the font files themselves.</p>
+      <h2>زانیاری</h2>
+      <p class="lede">لە خودی فایلەکانی فۆنتەوە خوێندراوە.</p>
       <dl class="facts" data-facts></dl>
     </section>
 
     <section class="section">
-      <h2>Use it on the web</h2>
-      <p class="lede">Served from cdn.daban.one. Copy and paste.</p>
+      <h2>بەکارهێنان لە وێبدا</h2>
+      <p class="lede">کۆپی بکە و لە ستایلشیتی خۆتدا دایبنێ.</p>
       <div class="code" data-snippet></div>
     </section>
 
     <section class="section">
-      <h2>Licence</h2>
-      <div class="note">
-        <p>Lenos is <strong>Sirwan Yassin's</strong> work. No permission to redistribute it was obtained and no licence accompanied the original download. No rights are claimed or granted here — get permission from the designer before using it.</p>
-        <p>Designers: if you want this removed,
-        <a href="https://github.com/daban6/kurdish-font-library/issues">open an
-        issue</a> and it will be removed. <a href="/about/">Read more →</a></p>
+      <h2>سەرچاوە</h2>
+      <div class="panel">
+        <p>Lenos لە دیزاینی <strong>سیروان یاسین</strong>ە و مافەکانی بۆ ئەو دەمێنێتەوە. ئێمە تەنها مێتاداتا و ڕێکخستنی فایلەکانمان پاککردووەتەوە بۆ ئەوەی باشتر کار بکەن.</p>
       </div>
-      
     </section>
   </div>
 </main>
@@ -77,12 +87,12 @@
 <footer class="site-foot">
   <div class="wrap cols">
     <div>
-      <p><strong>daban's kurdish fonts</strong> — fonts.daban.one</p>
-      <p>Lenos by Sirwan Yassin. All rights remain with the designer.</p>
+      <p><strong>فۆنتی کوردی</strong> — fonts.daban.one</p>
+      <p>Lenos لە دیزاینی سیروان یاسین. مافەکان بۆ خۆی دەمێنێتەوە.</p>
     </div>
     <div>
-      <p><a href="/about/">About &amp; licensing</a></p>
-      <p><a href="https://github.com/daban6/kurdish-font-library">Source on GitHub</a></p>
+      <p><a href="/about/">دەربارە</a></p>
+      <p><a href="https://github.com/daban6/kurdish-font-library">سەرچاوە لە گیتهەب</a></p>
     </div>
   </div>
 </footer>

@@ -1,7 +1,7 @@
-/* daban's kurdish fonts - specimen rendering
+/* فۆنتی کوردی — specimen rendering
  *
  * Reads window.FONT_DATA (generated from the font binaries) and renders either
- * the home gallery or a single family page, depending on data-page on <body>.
+ * the home gallery or a single family page, per data-page on <body>.
  */
 (function () {
   "use strict";
@@ -10,19 +10,55 @@
   var byslug = {};
   DATA.families.forEach(function (f) { byslug[f.slug] = f; });
 
-  /* ---------------------------------------------------------- sample text */
+  /* -------------------------------------------------------------- strings */
 
-  var SAMPLES = {
-    sorani: { dir: "rtl", text: "زمانی کوردی زمانێکی دەوڵەمەند و جوانە" },
-    words: { dir: "rtl", text: "کوردستان · ھەولێر · سلێمانی · دهۆک · ڕۆژهەڵات" },
-    kurmanji: { dir: "ltr", text: "Zimanê kurdî zimanek dewlemend û xweş e" },
-    latin: { dir: "ltr", text: "The quick brown fox jumps over the lazy dog" },
-    numbers: { dir: "ltr", text: "٠١٢٣٤٥٦٧٨٩  ۰۱۲۳۴۵۶۷۸۹  0123456789" }
+  var T = {
+    weights: "ئەستووری",
+    glyphs: "پیت",
+    by: "لە دیزاینی",
+    specimen: "نموونە",
+    download: "داگرتن",
+    yourText: "نووسینی خۆت",
+    typeHere: "لێرە بنووسە…",
+    size: "قەبارە",
+    leading: "دووری دێر",
+    copy: "کۆپی",
+    copied: "کۆپی کرا",
+    designer: "دیزاینەر",
+    version: "وەشان",
+    supports: "پشتگیری",
+    suggestedLeading: "دووری دێری پێشنیارکراو",
+    sorani: "سۆرانی",
+    kurmanji: "کورمانجی",
+    soraniOnly: "سۆرانی",
+    both: "سۆرانی و کورمانجی",
+    groupSorani: "پیتەکانی سۆرانی",
+    groupKurmanji: "پیتەکانی کورمانجی",
+    groupArabicDigits: "ژمارەی عەرەبی",
+    groupKurdishDigits: "ژمارەی کوردی",
+    groupLatinDigits: "ژمارەی لاتینی"
   };
-  var TAB_LABELS = {
-    sorani: "Sorani", words: "Words", kurmanji: "Kurmanji",
-    latin: "Latin", numbers: "Numbers"
-  };
+
+  var TABS = [
+    { key: "sorani", label: "سۆرانی", dir: "rtl",
+      text: "زمانی کوردی زمانێکی دەوڵەمەند و جوانە" },
+    { key: "words", label: "وشە", dir: "rtl",
+      text: "کوردستان · هەولێر · سلێمانی · دهۆک · ڕۆژهەڵات" },
+    { key: "kurmanji", label: "کورمانجی", dir: "ltr",
+      text: "Zimanê kurdî zimanek dewlemend û xweş e" },
+    { key: "latin", label: "لاتینی", dir: "ltr",
+      text: "The quick brown fox jumps over the lazy dog" },
+    { key: "numbers", label: "ژمارە", dir: "ltr",
+      text: "٠١٢٣٤٥٦٧٨٩  ۰۱۲۳۴۵۶۷۸۹  0123456789" }
+  ];
+
+  /* Arabic-Indic digits read more naturally on a Kurdish page. */
+  var AR_DIGITS = "٠١٢٣٤٥٦٧٨٩";
+  function num(n) {
+    return String(n).replace(/[0-9]/g, function (d) {
+      return AR_DIGITS.charAt(+d);
+    });
+  }
 
   /* --------------------------------------------------------------- theme */
 
@@ -46,8 +82,7 @@
     function label() {
       var dark = currentTheme() === "dark";
       btn.textContent = dark ? "☀" : "☾";
-      btn.setAttribute("aria-label",
-        dark ? "Switch to light theme" : "Switch to dark theme");
+      btn.setAttribute("aria-label", dark ? "ڕووناک" : "تاریک");
     }
     label();
     btn.addEventListener("click", function () {
@@ -64,9 +99,6 @@
    * edge network, so serving the site's own specimens from its own origin skips
    * a DNS lookup and a TLS handshake and reuses the open connection - and it
    * needs no CORS, which a cross-origin @font-face does.
-   *
-   * The CDN stays as the fallback here, and remains the address used by the
-   * copy-paste snippet on each family page, which is what other sites embed.
    */
 
   var declared = {};
@@ -84,15 +116,14 @@
     document.head.appendChild(el);
   }
 
-  function whenReady(fam, face, node) {
-    if (!document.fonts || !document.fonts.load) return;
-    node.classList.add("is-loading");
-    document.fonts.load(face.weight + ' 40px "' + fam.name + '"')
-      .catch(function () {})
-      .then(function () { node.classList.remove("is-loading"); });
-  }
-
   /* -------------------------------------------------------------- helpers */
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
 
   /* Firefox only gained plaintext-only in 136; an unsupported value would
    * leave the specimen not editable at all, so fall back to plain true. */
@@ -105,19 +136,18 @@
     } catch (e) { return "true"; }
   })();
 
-  function el(tag, cls, text) {
-    var n = document.createElement(tag);
-    if (cls) n.className = cls;
-    if (text != null) n.textContent = text;
-    return n;
+  function have(fam, key) {
+    var c = fam.coverage[key];
+    if (!c) return [];
+    return c.have || c;
   }
 
-  function missing(fam, key) {
-    var expected = DATA.alphabets[key] || "";
-    var have = (fam.coverage[key] && fam.coverage[key].have) || [];
+  function supportLabel(fam) {
+    var expected = (DATA.alphabets.kurmanji || "").split("");
     var set = {};
-    have.forEach(function (c) { set[c] = 1; });
-    return expected.split("").filter(function (c) { return !set[c]; });
+    have(fam, "kurmanji").forEach(function (c) { set[c] = 1; });
+    var complete = expected.every(function (c) { return set[c]; });
+    return complete ? T.both : T.soraniOnly;
   }
 
   function makeSpecimen(fam, face, sample, size, lineHeight) {
@@ -125,58 +155,37 @@
     node.textContent = sample.text;
     node.dir = sample.dir;
     node.setAttribute("contenteditable", EDITABLE);
+    node.setAttribute("spellcheck", "false");
+    node.setAttribute("role", "textbox");
+    node.setAttribute("aria-label", fam.name + " " + face.style);
+    node.style.fontFamily = '"' + fam.name + '", sans-serif';
+    node.style.fontWeight = face.weight;
+    node.style.fontSize = size + "px";
+    node.style.lineHeight = lineHeight || fam.lineHeight;
     if (EDITABLE === "true") {
-      // Keep pasted rich text out of the specimen.
       node.addEventListener("paste", function (ev) {
         ev.preventDefault();
         var text = (ev.clipboardData || window.clipboardData).getData("text");
         document.execCommand("insertText", false, text);
       });
     }
-    node.setAttribute("spellcheck", "false");
-    node.setAttribute("role", "textbox");
-    node.setAttribute("aria-label", fam.name + " " + face.style + " preview");
-    node.style.fontFamily = '"' + fam.name + '", sans-serif';
-    node.style.fontWeight = face.weight;
-    node.style.fontSize = size + "px";
-    node.style.lineHeight = lineHeight || fam.lineHeight;
     declareFace(fam, face);
-    whenReady(fam, face, node);
     return node;
   }
 
   function downloadUrl(fam) { return fam.cdn + "/" + fam.zip; }
 
-  function metaBits(fam) {
-    var wrap = el("div", "family-meta");
-    function add(text) { wrap.appendChild(el("span", null, text)); }
-    function sep() { wrap.appendChild(el("span", "sep", "·")); }
-    add(fam.faces.length + (fam.faces.length === 1 ? " weight" : " weights"));
-    sep(); add(fam.glyphs.toLocaleString() + " glyphs");
-    sep(); add("by " + fam.designer);
-    var miss = missing(fam, "kurmanji");
-    if (miss.length) {
-      wrap.appendChild(el("span", "badge badge-warn",
-        "Sorani only — no " + miss.join(" ")));
-    }
-    if (fam.kerning === "none") {
-      wrap.appendChild(el("span", "badge badge-warn", "No kerning"));
-    }
-    if (fam.reserved) {
-      wrap.appendChild(el("span", "badge badge-warn", "All rights reserved"));
-    }
-    return wrap;
+  function primaryFace(fam) {
+    return fam.faces.filter(function (f) {
+      return f.style === fam.defaultStyle;
+    })[0] || fam.faces[0];
   }
 
   /* ------------------------------------------------------- shared controls */
 
   function buildControls(host, opts) {
-    var state = {
-      sample: "sorani",
-      size: opts.size,
-      text: null,
-      lineHeight: null
-    };
+    var state = { tab: TABS[0], size: opts.size, text: null,
+                  lineHeight: opts.lineHeight || null };
 
     var bar = el("div", "controls");
     var wrap = el("div", "wrap");
@@ -184,13 +193,13 @@
 
     var tabs = el("div", "tabs");
     tabs.setAttribute("role", "tablist");
-    Object.keys(SAMPLES).forEach(function (key) {
-      var t = el("button", "tab", TAB_LABELS[key]);
+    TABS.forEach(function (tab) {
+      var t = el("button", "tab", tab.label);
       t.type = "button";
       t.setAttribute("role", "tab");
-      t.setAttribute("aria-selected", key === state.sample ? "true" : "false");
+      t.setAttribute("aria-selected", tab === state.tab ? "true" : "false");
       t.addEventListener("click", function () {
-        state.sample = key;
+        state.tab = tab;
         state.text = null;
         input.value = "";
         tabs.querySelectorAll(".tab").forEach(function (o) {
@@ -203,12 +212,12 @@
     wrap.appendChild(tabs);
 
     var field = el("div", "field");
-    var lab = el("label", null, "Your text");
+    var lab = el("label", null, T.yourText);
     lab.setAttribute("for", "custom-text");
     var input = el("input");
     input.id = "custom-text";
     input.type = "text";
-    input.placeholder = "type to preview…";
+    input.placeholder = T.typeHere;
     input.setAttribute("autocomplete", "off");
     input.addEventListener("input", function () {
       state.text = input.value.length ? input.value : null;
@@ -218,43 +227,42 @@
     field.appendChild(input);
     wrap.appendChild(field);
 
-    wrap.appendChild(rangeControl("Size", state.size, 12, 160, 1, "px",
-      function (v) { state.size = v; opts.onchange(state); }));
+    wrap.appendChild(rangeControl(T.size, state.size, 14, 180, 1,
+      function (v) { state.size = v; opts.onchange(state); },
+      function (v) { return num(v); }));
 
     if (opts.lineHeight) {
-      state.lineHeight = opts.lineHeight;
-      wrap.appendChild(rangeControl("Leading", state.lineHeight, 0.9, 2.6, 0.01,
-        "", function (v) { state.lineHeight = v; opts.onchange(state); }));
+      wrap.appendChild(rangeControl(T.leading, state.lineHeight, 0.9, 2.8, 0.01,
+        function (v) { state.lineHeight = v; opts.onchange(state); },
+        function (v) { return num(v.toFixed(2)); }));
     }
 
     host.appendChild(bar);
     return state;
   }
 
-  function rangeControl(label, value, min, max, step, unit, oninput) {
+  function rangeControl(label, value, min, max, step, oninput, format) {
     var box = el("div", "slider");
-    var id = "r-" + label.toLowerCase();
+    var id = "r-" + Math.random().toString(36).slice(2, 7);
     var l = el("label", null, label);
     l.setAttribute("for", id);
     var r = el("input");
     r.type = "range";
     r.id = id;
     r.min = min; r.max = max; r.step = step; r.value = value;
-    var out = el("output", null, value + unit);
+    var out = el("output", null, format(value));
     r.addEventListener("input", function () {
       var v = parseFloat(r.value);
-      out.textContent = (step < 1 ? v.toFixed(2) : v) + unit;
+      out.textContent = format(v);
       oninput(v);
     });
     box.appendChild(l); box.appendChild(r); box.appendChild(out);
     return box;
   }
 
-  function sampleFor(state, fam) {
-    var base = SAMPLES[state.sample];
-    if (state.text == null) return base;
-    // Custom text keeps the direction of the tab it was typed under.
-    return { dir: base.dir, text: state.text };
+  function sampleFor(state) {
+    if (state.text == null) return state.tab;
+    return { dir: state.tab.dir, text: state.text };
   }
 
   /* ------------------------------------------------------------ home page */
@@ -266,14 +274,14 @@
     var nodes = [];
 
     var state = buildControls(host, {
-      size: 46,
+      size: 58,
       onchange: function (s) {
+        var sample = sampleFor(s);
         nodes.forEach(function (n) {
-          var sample = sampleFor(s, n.fam);
-          n.node.textContent = sample.text;
-          n.node.dir = sample.dir;
-          n.node.className = "specimen " + sample.dir;
-          n.node.style.fontSize = s.size + "px";
+          n.textContent = sample.text;
+          n.dir = sample.dir;
+          n.className = "specimen " + sample.dir;
+          n.style.fontSize = s.size + "px";
         });
       }
     });
@@ -285,12 +293,19 @@
       var link = el("a", "family-name", fam.name);
       link.href = "/" + fam.slug + "/";
       head.appendChild(link);
-      head.appendChild(metaBits(fam));
+
+      var meta = el("div", "family-meta");
+      meta.appendChild(el("span", null, num(fam.faces.length) + " " + T.weights));
+      meta.appendChild(el("span", "sep", "·"));
+      meta.appendChild(el("span", null, supportLabel(fam)));
+      meta.appendChild(el("span", "sep", "·"));
+      meta.appendChild(el("span", null, T.by + " " + fam.designerKu));
+      head.appendChild(meta);
 
       var actions = el("div", "family-actions");
-      var view = el("a", "btn", "Specimen");
+      var view = el("a", "btn", T.specimen);
       view.href = "/" + fam.slug + "/";
-      var dl = el("a", "btn btn-solid", "Download");
+      var dl = el("a", "btn btn-solid", T.download);
       dl.href = downloadUrl(fam);
       dl.setAttribute("download", "");
       actions.appendChild(view);
@@ -298,13 +313,10 @@
       head.appendChild(actions);
       sec.appendChild(head);
 
-      var face = fam.faces.filter(function (f) {
-        return f.style === fam.defaultStyle;
-      })[0] || fam.faces[0];
-      var sample = sampleFor(state, fam);
-      var node = makeSpecimen(fam, face, sample, state.size);
+      var node = makeSpecimen(fam, primaryFace(fam), sampleFor(state),
+        state.size);
       sec.appendChild(node);
-      nodes.push({ node: node, fam: fam });
+      nodes.push(node);
 
       list.appendChild(sec);
     });
@@ -320,11 +332,11 @@
     var nodes = [];
 
     var state = buildControls(host, {
-      size: 40,
+      size: 50,
       lineHeight: fam.lineHeight,
       onchange: function (s) {
+        var sample = sampleFor(s);
         nodes.forEach(function (n) {
-          var sample = sampleFor(s, fam);
           n.textContent = sample.text;
           n.dir = sample.dir;
           n.className = "specimen " + sample.dir;
@@ -338,12 +350,8 @@
       var row = el("div", "weight-row");
       var label = el("div", "weight-label");
       label.appendChild(el("span", null, face.style));
-      label.appendChild(el("span", "num", face.weight));
-      if (face.kern === false) {
-        label.appendChild(el("span", "miss", "no kerning"));
-      }
       row.appendChild(label);
-      var node = makeSpecimen(fam, face, sampleFor(state, fam),
+      var node = makeSpecimen(fam, face, sampleFor(state),
         state.size, state.lineHeight);
       row.appendChild(node);
       nodes.push(node);
@@ -362,65 +370,42 @@
   function renderGlyphs(fam) {
     var host = document.querySelector("[data-glyphs]");
     if (!host) return;
-    var groups = [
-      ["Sorani", "sorani"],
-      ["Kurmanji", "kurmanji"],
-      ["Arabic-Indic digits", "arabicDigits"],
-      ["Extended Arabic-Indic digits", "persianDigits"],
-      ["Latin digits", "latinDigits"]
-    ];
-    declareFace(fam, fam.faces.filter(function (f) {
-      return f.style === fam.defaultStyle;
-    })[0] || fam.faces[0]);
+    declareFace(fam, primaryFace(fam));
 
-    groups.forEach(function (g) {
-      var expected = DATA.alphabets[g[1]] || "";
-      if (!expected) return;
-      var have = {};
-      ((fam.coverage[g[1]] && fam.coverage[g[1]].have) ||
-        fam.coverage[g[1]] || []).forEach(function (c) { have[c] = 1; });
+    [["sorani", T.groupSorani],
+     ["kurmanji", T.groupKurmanji],
+     ["arabicDigits", T.groupArabicDigits],
+     ["persianDigits", T.groupKurdishDigits],
+     ["latinDigits", T.groupLatinDigits]].forEach(function (g) {
+      var chars = have(fam, g[0]);
+      if (!chars.length) return;
 
-      var miss = expected.split("").filter(function (c) { return !have[c]; });
-      var h = el("h3", null, g[0]);
-      h.style.font = "500 13px/1.4 var(--ui)";
-      h.style.margin = "22px 0 9px";
-      if (miss.length) {
-        var b = el("span", "badge badge-warn", "missing " + miss.join(" "));
-        b.style.marginInlineStart = "9px";
-        h.appendChild(b);
-      }
-      host.appendChild(h);
-
+      var group = el("div", "glyph-group");
+      group.appendChild(el("h3", null, g[1]));
       var grid = el("div", "glyphs");
-      expected.split("").forEach(function (ch) {
-        var cell = el("div", "glyph" + (have[ch] ? "" : " absent"));
+      chars.forEach(function (ch) {
+        var cell = el("div", "glyph");
         cell.style.fontFamily = '"' + fam.name + '", sans-serif';
         var cp = ch.codePointAt(0).toString(16).toUpperCase();
-        cell.title = "U+" + ("0000" + cp).slice(-4) +
-          (have[ch] ? "" : " — not in this font");
-        cell.appendChild(el("span", null, ch));
-        cell.appendChild(el("span", "glyph-cp", "U+" + ("0000" + cp).slice(-4)));
+        cell.title = "U+" + ("0000" + cp).slice(-4);
+        cell.textContent = ch;
         grid.appendChild(cell);
       });
-      host.appendChild(grid);
+      group.appendChild(grid);
+      host.appendChild(group);
     });
   }
 
   function renderFacts(fam) {
     var host = document.querySelector("[data-facts]");
     if (!host) return;
-    var feats = fam.features.join(" ");
-    var facts = [
-      ["Designer", fam.designer],
-      ["Version", fam.version],
-      ["Weights", fam.faces.length],
-      ["Glyphs", fam.glyphs.toLocaleString()],
-      ["Units per em", fam.upm],
-      ["Kerning", fam.kerning],
-      ["Suggested line height", fam.lineHeight],
-      ["OpenType features", feats || "—"]
-    ];
-    facts.forEach(function (f) {
+    [[T.designer, fam.designerKu],
+     [T.version, num(fam.version)],
+     [T.weights, num(fam.faces.length)],
+     [T.glyphs, num(fam.glyphs)],
+     [T.supports, supportLabel(fam)],
+     [T.suggestedLeading, num(fam.lineHeight.toFixed(2))]
+    ].forEach(function (f) {
       var d = el("div", "fact");
       d.appendChild(el("dt", null, f[0]));
       d.appendChild(el("dd", null, String(f[1])));
@@ -435,8 +420,8 @@
     fam.faces.forEach(function (face) {
       lines.push("@font-face {");
       lines.push('  font-family: "' + fam.name + '";');
-      lines.push("  src: url(\"" + fam.cdn + "/" + face.file +
-        "\") format(\"woff2\");");
+      lines.push('  src: url("' + fam.cdn + "/" + face.file +
+        '") format("woff2");');
       lines.push("  font-weight: " + face.weight + ";");
       lines.push("  font-display: swap;");
       lines.push("}");
@@ -452,16 +437,14 @@
     pre.appendChild(el("code", null, css));
     host.appendChild(pre);
 
-    var btn = el("button", "btn copy", "Copy");
+    var btn = el("button", "btn copy", T.copy);
     btn.type = "button";
     btn.addEventListener("click", function () {
-      var done = function () {
-        btn.textContent = "Copied";
-        setTimeout(function () { btn.textContent = "Copy"; }, 1400);
-      };
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(css).then(done, function () {});
-      }
+      if (!navigator.clipboard) return;
+      navigator.clipboard.writeText(css).then(function () {
+        btn.textContent = T.copied;
+        setTimeout(function () { btn.textContent = T.copy; }, 1500);
+      }, function () {});
     });
     host.appendChild(btn);
   }

@@ -1,27 +1,42 @@
 <!doctype html>
-<html lang="en">
+<html lang="ckb" dir="rtl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>daban's kurdish fonts</title>
-<meta name="description" content="Quality Kurdish typefaces you can preview and download. Full Sorani coverage, properly packaged for desktop, print and web.">
+<title>فۆنتی کوردی — دابان</title>
+<meta name="description" content="فۆنتی کوردیی باش، بەخۆڕایی. سێ خێزانی فۆنت بە پشتگیریی تەواوی پیتەکانی کوردیی ناوەندی. نموونە ببینە و دایبگرە.">
 <link rel="canonical" href="https://fonts.daban.one/">
-<meta property="og:title" content="daban's kurdish fonts">
-<meta property="og:description" content="Quality Kurdish typefaces you can preview and download.">
+<meta property="og:title" content="فۆنتی کوردی — دابان">
+<meta property="og:description" content="فۆنتی کوردیی باش، بەخۆڕایی.">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="ckb">
 <meta property="og:url" content="https://fonts.daban.one/">
 <link rel="preload" href="/fonts/Lenos/WEB/WOFF2/Lenos-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/Lenos/WEB/WOFF2/Lenos-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<style>
+/* The interface is set in Lenos, one of the families on show. */
+@font-face {
+  font-family: "Lenos";
+  src: url("/fonts/Lenos/WEB/WOFF2/Lenos-Regular.woff2") format("woff2");
+  font-weight: 400; font-display: swap;
+}
+@font-face {
+  font-family: "Lenos";
+  src: url("/fonts/Lenos/WEB/WOFF2/Lenos-SemiBold.woff2") format("woff2");
+  font-weight: 600; font-display: swap;
+}
+</style>
 </head>
 <body data-page="home">
 
 <header class="site-head">
   <div class="wrap">
-    <a class="wordmark" href="/">daban's <span class="dim">kurdish fonts</span></a>
+    <a class="wordmark" href="/">فۆنتی کوردی <span class="dim">دابان</span></a>
     <nav class="site-nav">
-      <a class="btn" href="/about/">About</a>
-      <button class="btn btn-icon" type="button" data-theme-toggle aria-label="Switch theme">☾</button>
+      <a class="btn" href="/about/">دەربارە</a>
+      <button class="btn btn-icon" type="button" data-theme-toggle aria-label="گۆڕینی ڕەنگ">☾</button>
     </nav>
   </div>
 </header>
@@ -29,10 +44,10 @@
 <main>
   <div class="wrap">
     <div class="hero">
-      <h1>Kurdish typefaces, properly packaged.</h1>
-      <p>Three families with complete Central Kurdish coverage — every letter,
-      in every joining form. Preview them with your own text, then download for
-      desktop, print or web.</p>
+      <h1>فۆنتی کوردیی باش. بەخۆڕایی.</h1>
+      <p>سێ خێزانی فۆنت بە پشتگیریی تەواوی پیتەکانی کوردیی ناوەندی، بە هەموو
+      شێوەکانی سەرەتا و ناوەڕاست و کۆتایی. بە نووسینی خۆت نموونەیان ببینە،
+      پاشان دایانبگرە بۆ کۆمپیوتەر، چاپ و وێب.</p>
     </div>
   </div>
 
@@ -41,34 +56,18 @@
   <div class="wrap">
     <div data-families></div>
   </div>
-
-  <div class="wrap">
-    <section class="section">
-      <h2>About these fonts</h2>
-      <p class="lede">What you are downloading, and who made it.</p>
-      <div class="note">
-        <p><strong>These typefaces are their designers' work, not mine.</strong>
-        I have no permission to redistribute them, and K24 is marked
-        “All rights reserved” by its author. No rights are claimed or granted
-        here — get permission from the designer before using a font.</p>
-        <p>Designers: if you want your work removed,
-        <a href="https://github.com/daban6/kurdish-font-library/issues">open an
-        issue</a> and it will be removed. <a href="/about/">Read more →</a></p>
-      </div>
-    </section>
-  </div>
 </main>
 
 <footer class="site-foot">
   <div class="wrap cols">
     <div>
-      <p><strong>daban's kurdish fonts</strong> — fonts.daban.one</p>
-      <p>Typefaces by Sirwan Yassin, Rabar and RTLtype. All rights remain with
-      them. Packaging and metadata corrections by Daban.</p>
+      <p><strong>فۆنتی کوردی</strong> — fonts.daban.one</p>
+      <p>فۆنتەکان لە دیزاینی سیروان یاسین، ڕەبار و RTLtype. مافەکان بۆ خۆیان
+      دەمێنێتەوە. ڕێکخستن و پاککردنەوەی فایلەکان لەلایەن دابان.</p>
     </div>
     <div>
-      <p><a href="/about/">About &amp; licensing</a></p>
-      <p><a href="https://github.com/daban6/kurdish-font-library">Source on GitHub</a></p>
+      <p><a href="/about/">دەربارە</a></p>
+      <p><a href="https://github.com/daban6/kurdish-font-library">سەرچاوە لە گیتهەب</a></p>
     </div>
   </div>
 </footer>
