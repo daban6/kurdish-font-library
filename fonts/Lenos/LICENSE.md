@@ -1,10 +1,22 @@
-Original font creator:
-Sirwan Yassin
+# Lenos — licence status
 
-Original license:
-Unknown.
+**Original designer:** Sirwan Yassin
+**Copyright notice in the original font:** `Copyright © 2021 Sirwan Yassin`
+**Licence statement in the original font:** none
+**Upstream licence:** not established
 
-This package contains metadata cleanup and packaging modifications
-performed by Daban in 2026.
+No permission to redistribute or modify this typeface has been obtained from
+Sirwan Yassin, and no licence accompanied the original download. This package
+therefore grants you **no rights** to the font itself.
 
-The original font rights remain with the original creator.
+The changes made here are metadata, naming, vertical metrics, outline format
+conversion and packaging only. No outline was redrawn. Full detail is in
+`CHANGELOG.md`.
+
+All rights in the typeface remain with Sirwan Yassin.
+
+If you are the designer and want this family removed, or want its actual licence
+recorded here, please open an issue on the repository.
+
+See `LICENSING.md` for the full picture, including the separate MIT licence that
+covers the packaging scripts.
