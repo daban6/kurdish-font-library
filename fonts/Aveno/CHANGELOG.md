@@ -5,6 +5,7 @@
 - Cleaned font metadata
 - Renamed family to Aveno
 - Fixed OpenType naming
+- fixed style metadata
 - Updated vendor identifier to DABN
 - Added modification credits
 - Packaged as a font family archive

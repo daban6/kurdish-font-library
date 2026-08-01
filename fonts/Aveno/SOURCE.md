@@ -13,7 +13,6 @@ Archived:
 Modifications:
 - Metadata cleanup
 - OpenType name table normalization
-- Style metadata fixes
-- Weight metadata fixes
+- Fixed style metadata
 - Vendor ID updated to DABN
 - Packaging improvements by Daban
