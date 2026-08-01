@@ -59,8 +59,14 @@
   }
 
   /* ----------------------------------------------------------- font loading
-   * Faces are declared against the CDN with the repository copy as fallback,
-   * so the site keeps working if the CDN is unreachable.
+   *
+   * Same-origin first, CDN second. The site and the CDN bucket sit on the same
+   * edge network, so serving the site's own specimens from its own origin skips
+   * a DNS lookup and a TLS handshake and reuses the open connection - and it
+   * needs no CORS, which a cross-origin @font-face does.
+   *
+   * The CDN stays as the fallback here, and remains the address used by the
+   * copy-paste snippet on each family page, which is what other sites embed.
    */
 
   var declared = {};
@@ -70,8 +76,8 @@
     declared[key] = true;
     var local = fam.local + "/WEB/WOFF2/" + face.file;
     var css = '@font-face{font-family:"' + fam.name + '";' +
-      "src:url('" + fam.cdn + "/" + face.file + "') format('woff2')," +
-      "url('" + local + "') format('woff2');" +
+      "src:url('" + local + "') format('woff2')," +
+      "url('" + fam.cdn + "/" + face.file + "') format('woff2');" +
       "font-weight:" + face.weight + ";font-style:normal;font-display:swap;}";
     var el = document.createElement("style");
     el.appendChild(document.createTextNode(css));
