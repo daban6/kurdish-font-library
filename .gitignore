@@ -22,3 +22,8 @@ tools/
 
 # Generated release archives
 dist/
+
+# Session infrastructure, local only
+docs/
+handoffs/
+changelogs/
