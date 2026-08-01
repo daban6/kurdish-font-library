@@ -1,10 +1,7 @@
 # Lenos
 
 A nine-weight Kurdish typeface by **Sirwan Yassin**, originally released as
-UniSIRWAN Lenos. Package version **1.002**.
-
-> Licence status: upstream terms are not established and no permission to
-> redistribute was obtained. See `LICENSE.md` before using this font.
+UniSIRWAN Lenos. Version 1.002.
 
 ## Weights
 
@@ -12,31 +9,25 @@ Thin · ExtraLight · Light · Regular · Medium · SemiBold · Bold · ExtraBol
 
 ## Formats
 
-| Directory | Format | Use |
-| --- | --- | --- |
-| `OTF/` | OpenType, CFF outlines | print and publishing; these are the masters |
-| `TTF/` | TrueType, quadratic outlines | desktop installation, general compatibility |
-| `WEB/WOFF2/` | WOFF2 | web, preferred |
-| `WEB/WOFF/` | WOFF | web, older browsers |
+| | |
+| --- | --- |
+| `OTF/` | print and publishing |
+| `TTF/` | desktop installation |
+| `WEB/WOFF2/` | web |
+| `WEB/WOFF/` | web, older browsers |
 
-All four are generated from the `OTF/` masters and carry the same glyph set,
-metadata and metrics.
-
-## Script coverage
+## Coverage
 
 Complete Central Kurdish (Sorani) alphabet, including ڕ ڵ ۆ ێ ڤ ھ ە, with
 initial, medial and final forms for every joining letter. Complete Kurmanji
 (Hawar) Latin alphabet. Arabic-Indic and Extended Arabic-Indic digits.
 
-Not present: U+066A (٪ Arabic percent sign).
+Not included: U+066A (٪ Arabic percent sign). Thin has no kerning; the other
+eight weights do.
 
-## Notes for use
+Kurdish text in this family wants roughly 1.72 em of line height for ascenders
+and the ڕ tail to clear each other.
 
-- Vertical metrics are uniform across all nine weights, so line height does not
-  change when you change weight. The family needs about 1.72 em of leading for
-  Kurdish text; that is what the design requires for ascenders and the ڕ tail not
-  to collide.
-- Thin has no kerning; the other eight weights do.
+## Licence
 
-`CHANGELOG.md` records what was changed in this package and why. `SOURCE.md`
-records where the font came from.
+All rights remain with Sirwan Yassin. See [LICENSE.md](LICENSE.md).

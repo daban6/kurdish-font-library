@@ -17,5 +17,8 @@ Thumbs.db
 __pycache__/
 *.pyc
 
+# Local build tooling, not part of the distribution
+tools/
+
 # Generated release archives
 dist/

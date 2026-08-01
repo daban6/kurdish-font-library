@@ -1,30 +1,23 @@
-# K24 — licence status
+# K24 — licence
 
 > **This font is marked "All rights reserved" by its author.** Of the three
-> families here, K24 is the one with an explicit restriction, and redistributing
-> it is not authorised by anything the packager holds. Treat its presence in this
-> repository as unresolved rather than settled.
+> families here, K24 is the one carrying an explicit restriction.
 
-**Original designer:** RTLtype
-**Copyright notice in the original font:** `Copyright (c) 2015 by RTLtype. All rights reserved.`
-**Licence statement in the original font:** none beyond the notice above
-**Upstream licence:** all rights reserved
+**Designer:** RTLtype
+**Original notice:** `Copyright (c) 2015 by RTLtype. All rights reserved.`
+**Source:** unknown
 
-No permission to redistribute or modify this typeface has been obtained from
-RTLtype. This package grants you **no rights** to the font itself, and the
-original notice explicitly reserves them.
+No permission to redistribute or modify this typeface was obtained from RTLtype,
+and its notice reserves all rights explicitly. This package claims no rights over
+the font and grants you none.
 
-The changes made here are metadata, naming, vertical metrics and packaging.
-One glyph was added: K24 Bold shipped without an Arabic question mark (U+061F),
-which made it impossible to set a Kurdish question in that weight. The missing
-glyph was constructed by mirroring the font's own Latin `question` glyph, so it
-stays on-weight and no new drawing was introduced. This is the only glyph-level
-change made to any font in this repository, and it is recorded in `CHANGELOG.md`.
+All rights remain with RTLtype. Obtain permission from RTLtype before using this
+font.
 
-All rights in the typeface remain with RTLtype.
+**If you are RTLtype and want this family removed, please open an issue and it
+will be removed.**
 
-If you are RTLtype and want this family removed, please open an issue on the
-repository and it will be removed.
-
-See `LICENSING.md` for the full picture, including the separate MIT licence that
-covers the packaging scripts.
+Changed here: metadata, naming, vertical metrics and packaging, plus one glyph —
+Bold was missing the Arabic question mark (U+061F), reconstructed by mirroring
+the font's own Latin question mark. No other outline was touched.
+See [LICENSING.md](../../LICENSING.md).
