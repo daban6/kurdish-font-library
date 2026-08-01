@@ -1,6 +1,6 @@
 # Kurdish Font Library
 
-A curated open-source collection of Kurdish typefaces.
+A curated collection of Kurdish typefaces.
 
 This repository provides professionally packaged Kurdish fonts with
 organized distribution formats for desktop, publishing, and web use.
@@ -15,42 +15,41 @@ Sirwan Yassin
 Source:
 https://xoshnus.com
 
+Version:
+1.001
+
 Packaging and metadata improvements:
 Daban (2026)
 
-## Available Formats
+---
 
-Each font family includes:
-
-- TTF — Desktop installation and general compatibility
-- OTF — Professional publishing applications
-- WOFF — Web usage
-- WOFF2 — Modern optimized web usage
-
-## Repository Structure
-# Kurdish Font Library
-
-A curated open-source collection of Kurdish typefaces.
-
-This repository provides professionally packaged Kurdish fonts with
-organized distribution formats for desktop, publishing, and web use.
-
-## Fonts
-
-### Lenos
+### Aveno
 
 Designer:
-Sirwan Yassin
+Rabar
 
-Source:
-https://xoshnus.com
+Version:
+1.000
+
+Packaging and metadata improvements:
+Daban (2026)
+
+---
+
+### K24
+
+Designer:
+RTLtype
+
+Version:
+1.000
 
 Packaging and metadata improvements:
 Daban (2026)
 
 ## Available Formats
 
-Each font family includes:
+Each font family may include:
 
 - TTF — Desktop installation and general compatibility
 - OTF — Professional publishing applications
@@ -58,19 +57,24 @@ Each font family includes:
 - WOFF2 — Modern optimized web usage
 
 ## Repository Structure
+
 kurdish-font-library/
 │
 ├── fonts/
-│ └── Lenos/
-│ ├── TTF/
-│ ├── OTF/
-│ └── WEB/
-│ ├── WOFF/
-│ └── WOFF2/
+│   ├── Lenos/
+│   ├── Aveno/
+│   └── K24/
 │
 ├── docs/
 ├── previews/
 └── tools/
+
+Each font directory contains:
+
+- README.md — font information and modifications
+- LICENSE.md — attribution and licensing notes
+- SOURCE.md — source and provenance information
+- CHANGELOG.md — packaging history
 
 ## Purpose
 
@@ -81,19 +85,11 @@ in a clean and accessible format.
 
 Original designers retain ownership of their creations.
 
-Each font directory contains:
-- source information
-- licensing information
-- modification history
+Packaging, metadata cleanup, and distribution improvements are performed
+by Daban (2026).
 
 ## License
 
-This repository uses the SIL Open Font License (OFL) 1.1.
+Individual font directories contain their own licensing information.
 
-OFL 1.1 allows fonts to be freely used, studied, modified, and redistributed
-while preserving creator attribution and keeping font licensing open.
-
-The full license text is available in the `LICENSE` file.
-
-Individual fonts may contain additional source information, attribution,
-and modification history inside their own directories.
+Original font rights remain with their respective creators.
