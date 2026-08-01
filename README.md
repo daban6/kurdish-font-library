@@ -67,6 +67,7 @@ kurdish-font-library/
 │
 ├── README.md
 └── LICENSE.md
+```
 
 Each font directory contains:
 
