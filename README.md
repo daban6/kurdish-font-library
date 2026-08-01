@@ -62,8 +62,25 @@ Each font family may include:
 kurdish-font-library/
 ├── fonts/
 │   ├── Lenos/
+│   │   ├── TTF/
+│   │   ├── OTF/
+│   │   └── WEB/
+│   │       ├── WOFF/
+│   │       └── WOFF2/
+│   │
 │   ├── Aveno/
+│   │   ├── TTF/
+│   │   ├── OTF/
+│   │   └── WEB/
+│   │       ├── WOFF/
+│   │       └── WOFF2/
+│   │
 │   └── K24/
+│       ├── TTF/
+│       ├── OTF/
+│       └── WEB/
+│           ├── WOFF/
+│           └── WOFF2/
 │
 ├── README.md
 └── LICENSE.md
@@ -71,23 +88,24 @@ kurdish-font-library/
 
 Each font directory contains:
 
-README.md — font information and modifications
-LICENSE.md — attribution and licensing notes
-SOURCE.md — source and provenance information
-CHANGELOG.md — packaging history
-Purpose
+- `README.md` — font information, formats, weights, and modifications
+- `LICENSE.md` — attribution and licensing information
+- `SOURCE.md` — original source and provenance information
+- `CHANGELOG.md` — version history and packaging changes
+
+## Purpose
 
 This project aims to preserve, organize, and distribute Kurdish typefaces
 in a clean and accessible format.
 
-Credits
+## Credits
 
 Original designers retain ownership of their creations.
 
 Packaging, metadata cleanup, and distribution improvements are performed
 by Daban (2026).
 
-License
+## License
 
 Individual font directories contain their own licensing information.
 
