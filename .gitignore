@@ -24,6 +24,6 @@ tools/
 dist/
 
 # Session infrastructure, local only
+beginning.md
 docs/
 handoffs/
-changelogs/
