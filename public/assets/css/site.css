@@ -1,5 +1,26 @@
 /* فۆنتی کوردی — dabanʼs kurdish fonts */
 
+/* Interface font: Aveno (Rabar), one of the families on show. Self-hosted from
+   the same files the previews use. Each specimen sets its own family; the site
+   chrome is set in Aveno. */
+@font-face {
+  font-family: "Aveno";
+  src: url("/fonts/Aveno/WEB/WOFF2/Aveno-Regular.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Aveno";
+  src: url("/fonts/Aveno/WEB/WOFF2/Aveno-Bold.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* Monospace for code blocks: self-hosted JetBrains Mono (Latin subset). */
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
 :root {
   --bg: #ffffff;
   --fg: #000000;
@@ -11,8 +32,8 @@
   --accent: #000000;
   --accent-fg: #ffffff;
   --radius: 8px;
-  --ui: "Lenos", "Noto Sans Arabic", "Segoe UI", Tahoma, system-ui, sans-serif;
-  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --ui: "Aveno", "Segoe UI", Tahoma, system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --wrap: 1240px;
 }
 
@@ -181,19 +202,20 @@ a:hover { opacity: 0.6; }
 }
 .field label { color: var(--faint); font-size: 13px; white-space: nowrap; }
 
-.slider { display: flex; align-items: center; gap: 10px; }
+.slider { display: flex; align-items: center; gap: 12px; }
 .slider label { color: var(--faint); font-size: 13px; white-space: nowrap; }
 .slider output {
-  font-size: 13px;
-  color: var(--muted);
-  min-width: 4ch;
+  font-size: 14px;
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+  min-width: 3ch;
   text-align: end;
 }
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
-  width: 110px;
-  height: 20px;
+  width: 132px;
+  height: 18px;
   background: transparent;
   cursor: pointer;
   direction: ltr;
@@ -204,11 +226,13 @@ input[type="range"]::-webkit-slider-runnable-track {
 input[type="range"]::-moz-range-track { height: 2px; background: var(--line); }
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 13px; height: 13px; margin-top: -5.5px;
+  width: 12px; height: 12px; margin-top: -5px;
   border-radius: 50%; background: var(--accent);
+  transition: transform 0.1s ease;
 }
+input[type="range"]:hover::-webkit-slider-thumb { transform: scale(1.15); }
 input[type="range"]::-moz-range-thumb {
-  width: 13px; height: 13px; border: 0;
+  width: 12px; height: 12px; border: 0;
   border-radius: 50%; background: var(--accent);
 }
 
@@ -223,13 +247,16 @@ input[type="range"]::-moz-range-thumb {
 .family-head {
   display: flex;
   align-items: baseline;
-  gap: 14px;
+  gap: 14px 18px;
   flex-wrap: wrap;
   margin-bottom: 26px;
+  /* Family names are Latin, so lay the header out left-to-right: name on the
+     left, metadata and actions on the right. */
+  direction: ltr;
 }
 .family-name {
   font-size: 23px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.3;
 }
@@ -240,9 +267,11 @@ input[type="range"]::-moz-range-thumb {
   gap: 10px;
   flex-wrap: wrap;
   align-items: baseline;
+  direction: rtl;               /* Kurdish metadata reads right-to-left */
+  margin-inline-start: auto;    /* push metadata + actions to the right */
 }
 .family-meta .sep { color: var(--faint); }
-.family-actions { margin-inline-start: auto; display: flex; gap: 8px; }
+.family-actions { display: flex; gap: 8px; }
 
 /* ------------------------------------------------------------- specimens */
 
@@ -350,7 +379,33 @@ input[type="range"]::-moz-range-thumb {
   font-size: 13px;
   line-height: 1.7;
 }
-.code .copy { position: absolute; top: 11px; inset-inline-end: 11px; }
+.code .copy {
+  position: absolute;
+  top: 11px;
+  right: 11px;
+  inset-inline-end: auto;
+  background: var(--panel);
+}
+
+/* Syntax colours for the snippet — restrained, and tuned per theme. */
+.code .t-at   { color: #a626a4; }
+.code .t-prop { color: #4078f2; }
+.code .t-str  { color: #50a14f; }
+.code .t-num  { color: #c18401; }
+@media (prefers-color-scheme: dark) {
+  .code .t-at   { color: #c678dd; }
+  .code .t-prop { color: #61afef; }
+  .code .t-str  { color: #98c379; }
+  .code .t-num  { color: #d19a66; }
+}
+:root[data-theme="light"] .code .t-at   { color: #a626a4; }
+:root[data-theme="light"] .code .t-prop { color: #4078f2; }
+:root[data-theme="light"] .code .t-str  { color: #50a14f; }
+:root[data-theme="light"] .code .t-num  { color: #c18401; }
+:root[data-theme="dark"] .code .t-at   { color: #c678dd; }
+:root[data-theme="dark"] .code .t-prop { color: #61afef; }
+:root[data-theme="dark"] .code .t-str  { color: #98c379; }
+:root[data-theme="dark"] .code .t-num  { color: #d19a66; }
 
 .panel {
   border: 1px solid var(--line);

@@ -9,9 +9,9 @@ and download.
 
 | Family | Designer | Weights | Version |
 | --- | --- | --- | --- |
-| [Lenos](fonts/Lenos) | Sirwan Yassin | Thin → Black (9) | 1.002 |
-| [Aveno](fonts/Aveno) | Rabar | Regular, Bold | 1.001 |
-| [K24](fonts/K24) | RTLtype | Light, Bold | 1.001 |
+| [Lenos](public/fonts/Lenos) | Sirwan Yassin | Thin → Black (9) | 1.002 |
+| [Aveno](public/fonts/Aveno) | Rabar | Regular, Bold | 1.001 |
+| [K24](public/fonts/K24) | RTLtype | Light, Bold | 1.001 |
 
 All three cover the full Central Kurdish (Sorani) alphabet — ڕ ڵ ۆ ێ ڤ ھ ە —
 with initial, medial and final forms for every joining letter. Lenos and K24 also
@@ -29,7 +29,7 @@ Every family ships in four formats:
 | `WEB/WOFF/` | web, older browsers |
 
 Download a family from [fonts.daban.one](https://fonts.daban.one), or take
-individual files from `fonts/`.
+individual files from `public/fonts/`.
 
 ## Licensing
 

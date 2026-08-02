@@ -27,3 +27,6 @@ dist/
 beginning.md
 docs/
 handoffs/
+
+# Local editor / agent config
+.claude/

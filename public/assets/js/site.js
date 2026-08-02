@@ -40,12 +40,8 @@
   };
 
   var TABS = [
-    { key: "sorani", label: "سۆرانی", dir: "rtl",
-      text: "زمانی کوردی زمانێکی دەوڵەمەند و جوانە" },
     { key: "words", label: "وشە", dir: "rtl",
       text: "کوردستان · هەولێر · سلێمانی · دهۆک · ڕۆژهەڵات" },
-    { key: "kurmanji", label: "کورمانجی", dir: "ltr",
-      text: "Zimanê kurdî zimanek dewlemend û xweş e" },
     { key: "latin", label: "لاتینی", dir: "ltr",
       text: "The quick brown fox jumps over the lazy dog" },
     { key: "numbers", label: "ژمارە", dir: "ltr",
@@ -123,6 +119,24 @@
     if (cls) n.className = cls;
     if (text != null) n.textContent = text;
     return n;
+  }
+
+  /* Minimal CSS token colouring for the "use in web" snippet. We generate the
+   * snippet ourselves, so a small tokeniser is enough - no highlighter library,
+   * which keeps the page self-contained. */
+  function esc(s) {
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+  function highlightCss(src) {
+    var re = /("(?:[^"\\]|\\.)*")|(@[\w-]+)|([A-Za-z-]+)(?=\s*:)|(\b\d+\.?\d*\b)/g;
+    var out = "", last = 0, m;
+    while ((m = re.exec(src))) {
+      out += esc(src.slice(last, m.index));
+      var cls = m[1] ? "str" : m[2] ? "at" : m[3] ? "prop" : "num";
+      out += '<span class="t-' + cls + '">' + esc(m[0]) + "</span>";
+      last = re.lastIndex;
+    }
+    return out + esc(src.slice(last));
   }
 
   /* Firefox only gained plaintext-only in 136; an unsupported value would
@@ -434,7 +448,9 @@
     var css = lines.join("\n");
 
     var pre = el("pre");
-    pre.appendChild(el("code", null, css));
+    var code = el("code");
+    code.innerHTML = highlightCss(css);
+    pre.appendChild(code);
     host.appendChild(pre);
 
     var btn = el("button", "btn copy", T.copy);
