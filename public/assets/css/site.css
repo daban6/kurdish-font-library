@@ -119,6 +119,12 @@ a:hover { opacity: 0.6; }
   align-items: center;
   justify-content: center;
   gap: 8px;
+  /* Pin the internal direction. The home rows set `direction: ltr` on
+     .family-head so the Latin family name sits on the left, and that was
+     leaking into the buttons and flipping their icons to the other side from
+     every other button on the site. The page is Kurdish-first, so the icon
+     leads on the right, everywhere. */
+  direction: rtl;
   border: 1px solid var(--line);
   background: transparent;
   color: var(--fg);
