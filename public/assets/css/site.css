@@ -34,9 +34,14 @@
   /* Focus ring colour is its own token: near-white on near-black glares, so
      dark mode softens it while light mode keeps the solid accent. */
   --focus: #000000;
+  --halo: rgba(0, 0, 0, 0.13);
   --radius: 8px;
   --ui: "Aveno", "Segoe UI", Tahoma, system-ui, sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  /* JetBrains Mono only - the generic keyword is a last resort for a failed
+     download, not a stylistic alternative. Listing the system monospaces
+     meant code could render in Menlo on one machine and Consolas on
+     another. */
+  --mono: "JetBrains Mono", monospace;
   --wrap: 1240px;
 }
 
@@ -46,18 +51,21 @@
     --line: #262320; --panel: #1a1714; --hover: #232019;
     --accent: #faf7f0; --accent-fg: #100e0b;
     --focus: rgba(250, 247, 240, 0.62);
+    --halo: rgba(250, 247, 240, 0.16);
   }
 }
 :root[data-theme="light"] {
   --bg: #faf7f0; --fg: #000000; --muted: #6d6a63; --faint: #a5a199;
   --line: #e3e0d9; --panel: #f2efe8; --hover: #ebe8e1;
-  --accent: #000000; --accent-fg: #faf7f0; --focus: #000000;
+  --accent: #000000; --accent-fg: #faf7f0;
+  --focus: #000000; --halo: rgba(0, 0, 0, 0.13);
 }
 :root[data-theme="dark"] {
   --bg: #100e0b; --fg: #faf7f0; --muted: #97938a; --faint: #5f5c55;
   --line: #262320; --panel: #1a1714; --hover: #232019;
   --accent: #faf7f0; --accent-fg: #100e0b;
   --focus: rgba(250, 247, 240, 0.62);
+  --halo: rgba(250, 247, 240, 0.16);
 }
 
 * { box-sizing: border-box; }
@@ -127,11 +135,16 @@ a:hover { opacity: 0.6; }
               transform 80ms ease;
 }
 .btn:hover { background: var(--hover); opacity: 1; }
-/* Keyboard users need to see where they are; mouse users should not get a
-   ring on click, hence :focus-visible rather than :focus. */
+/* Keyboard users need to see where they are; mouse users should not get an
+   indicator on click, hence :focus-visible rather than :focus.
+   A hard offset ring was too loud for this page, so focus reads as a soft
+   halo plus a firmer edge instead. It still has to be *seen* - an indicator
+   nobody notices is the same as none - so the halo is a real 3px and the
+   border shifts with it rather than the halo carrying it alone. */
 .btn:focus-visible {
-  outline: 2px solid var(--focus);
-  outline-offset: 2px;
+  outline: none;
+  border-color: var(--focus);
+  box-shadow: 0 0 0 3px var(--halo);
 }
 .btn:active { transform: translateY(1px); }
 .btn[aria-disabled="true"] { opacity: 0.5; pointer-events: none; }
@@ -243,6 +256,13 @@ a:hover { opacity: 0.6; }
   cursor: pointer;
 }
 .tab:hover { background: var(--hover); color: var(--fg); }
+/* Same focus language as the buttons, or the tabs fall back to the browser's
+   own ring and the page has two different focus styles. */
+.tab:focus-visible {
+  outline: none;
+  color: var(--fg);
+  box-shadow: 0 0 0 3px var(--halo);
+}
 .tab[aria-selected="true"] {
   background: var(--accent);
   color: var(--accent-fg);
@@ -259,7 +279,10 @@ a:hover { opacity: 0.6; }
   padding: 0 14px;
   height: 40px;
 }
-.field:focus-within { border-color: var(--fg); }
+.field:focus-within {
+  border-color: var(--focus);
+  box-shadow: 0 0 0 3px var(--halo);
+}
 .field input {
   flex: 1;
   border: 0;
@@ -351,8 +374,9 @@ input[type="range"]::-moz-range-thumb {
   /* family, weight, size and line-height are set inline by the script */
 }
 .specimen:focus-visible {
-  outline: 1px solid var(--faint);
-  outline-offset: 10px;
+  outline: none;
+  box-shadow: 0 0 0 3px var(--halo);
+  border-radius: var(--radius);
 }
 
 .weight-row { padding: 30px 0; border-bottom: 1px solid var(--line); }
@@ -431,6 +455,16 @@ input[type="range"]::-moz-range-thumb {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
+}
+/* The font has to be set on <code> too, not just <pre>. The browser's own
+   stylesheet declares `code { font-family: monospace }`, and a UA declaration
+   on the element beats an inherited value - so styling only the <pre> left the
+   snippet painted in the system monospace (Noto Sans Mono here) while the
+   preloaded JetBrains Mono sat unused. */
+.code pre,
+.code pre code,
+.code pre code span {
+  font-family: var(--mono);
 }
 .code pre {
   margin: 0;
