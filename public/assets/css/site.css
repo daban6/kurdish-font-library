@@ -160,8 +160,10 @@ a:hover { opacity: 0.6; }
 }
 
 /* Confirmation states. The design has no colour vocabulary beyond the accent,
-   so the acknowledgement is carried by the icon and the label, not a green. */
-.btn.is-done { border-color: var(--accent); }
+   so the acknowledgement is carried by the icon and the label, not a green.
+   The border uses --focus rather than --accent for the same reason the focus
+   ring does: in dark mode a solid near-white edge glares. */
+.btn.is-done { border-color: var(--focus); }
 .btn.is-failed { border-color: var(--faint); }
 
 @media (prefers-reduced-motion: reduce) {
