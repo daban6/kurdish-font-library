@@ -229,6 +229,7 @@ window.FONT_DATA = {
    "reserved": false,
    "cdn": "https://cdn.daban.one/fonts/lenos/1.003",
    "zip": "Lenos-1.003.zip",
+   "zipBytes": 1742974,
    "local": "/fonts/Lenos"
   },
   {
@@ -418,6 +419,7 @@ window.FONT_DATA = {
    "reserved": false,
    "cdn": "https://cdn.daban.one/fonts/aveno/1.001",
    "zip": "Aveno-1.001.zip",
+   "zipBytes": 1108460,
    "local": "/fonts/Aveno"
   },
   {
@@ -612,6 +614,7 @@ window.FONT_DATA = {
    "reserved": true,
    "cdn": "https://cdn.daban.one/fonts/k24/1.001",
    "zip": "K24-1.001.zip",
+   "zipBytes": 345802,
    "local": "/fonts/K24"
   }
  ],
