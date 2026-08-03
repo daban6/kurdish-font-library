@@ -23,6 +23,9 @@ tools/
 # Generated release archives
 dist/
 
+# Incoming font drops from designers, before packaging
+RB by sarkar/
+
 # Session infrastructure, local only
 beginning.md
 docs/

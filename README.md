@@ -9,17 +9,16 @@ and download.
 
 | Family | Designer | Weights | Version |
 | --- | --- | --- | --- |
-| [Lenos](public/fonts/Lenos) | Sirwan Yassin | Thin → Black (9) | 1.002 |
+| [Lenos](public/fonts/Lenos) | Sirwan Yassin | Thin → Black (9) | 1.003 |
 | [Aveno](public/fonts/Aveno) | Rabar | Regular, Bold | 1.001 |
 | [K24](public/fonts/K24) | RTLtype | Light, Bold | 1.001 |
+| [Sarkar RB](public/fonts/SarkarRB) | Sarkar Salar | Light, Regular, Bold | 1.001 |
 
-All three cover the full Central Kurdish (Sorani) alphabet — ڕ ڵ ۆ ێ ڤ ھ ە —
+All four cover the full Central Kurdish (Sorani) alphabet — ڕ ڵ ۆ ێ ڤ ھ ە —
 with initial, medial and final forms for every joining letter. Lenos and K24 also
-cover the Kurmanji (Hawar) Latin alphabet; Aveno is Sorani only.
+cover the Kurmanji (Hawar) Latin alphabet; Aveno and Sarkar RB are Sorani only.
 
 ## Formats
-
-Every family ships in four formats:
 
 | | |
 | --- | --- |
@@ -27,6 +26,9 @@ Every family ships in four formats:
 | `TTF/` | desktop installation |
 | `WEB/WOFF2/` | web |
 | `WEB/WOFF/` | web, older browsers |
+
+Sarkar RB has no `OTF/`: it is distributed as TrueType only, and no outline here
+is converted from one flavour to another.
 
 Download a family from [fonts.daban.one](https://fonts.daban.one), or take
 individual files from `public/fonts/`.
@@ -47,6 +49,7 @@ See [LICENSING.md](LICENSING.md) for the position on each family.
 
 ## Credits
 
-Typefaces by **Sirwan Yassin** (Lenos), **Rabar** (Aveno) and **RTLtype** (K24).
+Typefaces by **Sirwan Yassin** (Lenos), **Rabar** (Aveno), **RTLtype** (K24) and
+**Sarkar Salar** (Sarkar RB).
 
 Packaging and metadata corrections by Daban, 2026.

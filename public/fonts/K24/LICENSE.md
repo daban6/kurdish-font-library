@@ -1,7 +1,7 @@
 # K24 — licence
 
-> **This font is marked "All rights reserved" by its author.** Of the three
-> families here, K24 is the one carrying an explicit restriction.
+> **This font is marked "All rights reserved" by its author.** Of the families
+> here, K24 is the one carrying an explicit restriction.
 
 **Designer:** RTLtype
 **Original notice:** `Copyright (c) 2015 by RTLtype. All rights reserved.`

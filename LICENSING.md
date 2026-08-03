@@ -9,6 +9,7 @@ was obtained from any of the designers.
 | Lenos | Sirwan Yassin | none; upstream terms unknown |
 | Aveno | Rabar | none; upstream terms unknown |
 | K24 | RTLtype | `Copyright (c) 2015 by RTLtype. All rights reserved.` |
+| Sarkar RB | Sarkar Salar | none; upstream terms unknown |
 
 Absence of a licence statement is not permission. K24's notice reserves all
 rights explicitly.
