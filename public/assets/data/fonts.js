@@ -7,7 +7,7 @@ window.FONT_DATA = {
    "designer": "Sirwan Yassin",
    "designerKu": "سیروان یاسین",
    "designerUrl": "https://xoshnus.com",
-   "version": "1.002",
+   "version": "1.003",
    "upm": 1000,
    "glyphs": 682,
    "lineHeight": 1.714,
@@ -227,8 +227,8 @@ window.FONT_DATA = {
     ]
    },
    "reserved": false,
-   "cdn": "https://cdn.daban.one/fonts/lenos/1.002",
-   "zip": "Lenos-1.002.zip",
+   "cdn": "https://cdn.daban.one/fonts/lenos/1.003",
+   "zip": "Lenos-1.003.zip",
    "local": "/fonts/Lenos"
   },
   {

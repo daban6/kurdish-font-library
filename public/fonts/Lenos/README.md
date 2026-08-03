@@ -1,7 +1,7 @@
 # Lenos
 
 A nine-weight Kurdish typeface by **Sirwan Yassin**, originally released as
-UniSIRWAN Lenos. Version 1.002.
+UniSIRWAN Lenos. Version 1.003.
 
 ## Weights
 
