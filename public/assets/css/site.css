@@ -35,6 +35,10 @@
      dark mode softens it while light mode keeps the solid accent. */
   --focus: #000000;
   --halo: rgba(0, 0, 0, 0.13);
+  /* Tells the browser to render its own chrome - scrollbars, the text caret,
+     selection - to match. Without it the scrollbar stayed light in dark mode,
+     and being UA-painted it cannot be faded or themed any other way. */
+  color-scheme: light;
   --radius: 8px;
   --ui: "Aveno", "Segoe UI", Tahoma, system-ui, sans-serif;
   /* JetBrains Mono only - the generic keyword is a last resort for a failed
@@ -52,6 +56,7 @@
     --accent: #faf7f0; --accent-fg: #100e0b;
     --focus: rgba(250, 247, 240, 0.62);
     --halo: rgba(250, 247, 240, 0.16);
+    color-scheme: dark;
   }
 }
 :root[data-theme="light"] {
@@ -59,6 +64,7 @@
   --line: #e3e0d9; --panel: #f2efe8; --hover: #ebe8e1;
   --accent: #000000; --accent-fg: #faf7f0;
   --focus: #000000; --halo: rgba(0, 0, 0, 0.13);
+  color-scheme: light;
 }
 :root[data-theme="dark"] {
   --bg: #100e0b; --fg: #faf7f0; --muted: #97938a; --faint: #5f5c55;
@@ -66,6 +72,31 @@
   --accent: #faf7f0; --accent-fg: #100e0b;
   --focus: rgba(250, 247, 240, 0.62);
   --halo: rgba(250, 247, 240, 0.16);
+  color-scheme: dark;
+}
+
+/* Theme switching fades rather than snapping. The transition is only live
+   while a switch is in flight - site.js adds this class for the duration -
+   because declaring it permanently would also animate every hover and would
+   fire on first paint, when the stored theme is applied. */
+:root.theme-fading,
+:root.theme-fading * {
+  transition: background-color 220ms ease,
+              color 220ms ease,
+              border-color 220ms ease,
+              fill 220ms ease,
+              opacity 110ms ease !important;
+}
+/* A colour cross-fade is not motion, so it is kept when motion is reduced -
+   just shortened. Killing it outright made the switch look broken. */
+@media (prefers-reduced-motion: reduce) {
+  :root.theme-fading,
+  :root.theme-fading * {
+    transition: background-color 90ms linear,
+                color 90ms linear,
+                border-color 90ms linear,
+                fill 90ms linear !important;
+  }
 }
 
 * { box-sizing: border-box; }
@@ -162,6 +193,10 @@ a:hover { opacity: 0.6; }
 }
 .btn-solid:hover { opacity: 0.8; background: var(--accent); }
 .btn-icon { padding: 10px; min-width: 40px; }
+/* The moon/sun is swapped for a different element, so it cannot inherit a
+   colour transition - cross-fade the swap instead of letting it pop. */
+.btn-icon .icon { transition: opacity 110ms ease; }
+.btn-icon.icon-swapping .icon { opacity: 0; }
 
 /* Icons sit on the text baseline optically, not metrically - a filled glyph
    at cap height reads level with the label. */
@@ -482,13 +517,22 @@ input[type="range"]::-moz-range-thumb {
   font-size: 13px;
   line-height: 1.7;
 }
+/* The copy button is a .btn like any other and should look like one. It needs
+   an opaque background so the code cannot scroll underneath it, but that
+   background is the page colour, not the panel it sits on - otherwise it is
+   panel-on-panel and reads as a flat outline rather than the raised chip the
+   نموونە button is. The hover has to be restated too: `.code .copy` and
+   `.btn:hover` have equal specificity, so declaring background here silently
+   beat the shared hover and left this the one button on the site that did not
+   respond to the pointer. */
 .code .copy {
   position: absolute;
   top: 11px;
   right: 11px;
   inset-inline-end: auto;
-  background: var(--panel);
+  background: var(--bg);
 }
+.code .copy:hover { background: var(--hover); }
 
 /* Syntax colours for the snippet — restrained, and tuned per theme. */
 .code .t-at   { color: #a626a4; }

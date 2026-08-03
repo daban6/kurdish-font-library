@@ -146,11 +146,46 @@
       btn.setAttribute("aria-pressed", dark ? "true" : "false");
     }
     label();
+
+    /* Cross-fade the palette instead of snapping to it. The transition lives
+     * on a class rather than in the stylesheet permanently, so it cannot fire
+     * on first paint or bleed into hover states. */
+    var FADE_MS = 220;
+    var fadeTimer;
+    function fade() {
+      root.classList.add("theme-fading");
+      /* The class and the palette change would otherwise land in the same
+       * frame, and a transition only starts when the property changes between
+       * two styles that *already* carry it - so everything snapped. Reading a
+       * layout property flushes the new style first, giving the transition a
+       * "before" to interpolate from. */
+      void root.offsetWidth;
+      clearTimeout(fadeTimer);
+      /* Generous margin. Removing the class while a transition is still
+       * running cancels it and snaps the property to its end value, which is
+       * exactly what made the fade look like it was not working - style
+       * recalc across the whole tree can push the start well past the click. */
+      fadeTimer = setTimeout(function () {
+        root.classList.remove("theme-fading");
+      }, FADE_MS + 300);
+    }
+
+    var swapTimer;
     btn.addEventListener("click", function () {
       var next = currentTheme() === "dark" ? "light" : "dark";
+      fade();
       applyTheme(next);
       try { localStorage.setItem("theme", next); } catch (e) {}
-      label();
+
+      /* The moon and sun are different elements, so the new one would appear
+       * at its final colour while the rest of the page is still fading. Fade
+       * the old one out, swap at the midpoint, fade the new one in. */
+      btn.classList.add("icon-swapping");
+      clearTimeout(swapTimer);
+      swapTimer = setTimeout(function () {
+        label();
+        btn.classList.remove("icon-swapping");
+      }, 110);
     });
   }
 
