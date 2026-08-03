@@ -15,7 +15,6 @@
   var T = {
     weights: "ئەستووری",
     glyphs: "پیت",
-    by: "لە دیزاینی",
     specimen: "نموونە",
     download: "داگرتن",
     yourText: "نووسینی خۆت",
@@ -307,14 +306,6 @@
       var link = el("a", "family-name", fam.name);
       link.href = "/" + fam.slug + "/";
       head.appendChild(link);
-
-      var meta = el("div", "family-meta");
-      meta.appendChild(el("span", null, num(fam.faces.length) + " " + T.weights));
-      meta.appendChild(el("span", "sep", "·"));
-      meta.appendChild(el("span", null, supportLabel(fam)));
-      meta.appendChild(el("span", "sep", "·"));
-      meta.appendChild(el("span", null, T.by + " " + fam.designerKu));
-      head.appendChild(meta);
 
       var actions = el("div", "family-actions");
       var view = el("a", "btn", T.specimen);
