@@ -116,14 +116,6 @@
       text: "٠١٢٣٤٥٦٧٨٩  ۰۱۲۳۴۵۶۷۸۹  0123456789" }
   ];
 
-  /* Arabic-Indic digits read more naturally on a Kurdish page. */
-  var AR_DIGITS = "٠١٢٣٤٥٦٧٨٩";
-  function num(n) {
-    return String(n).replace(/[0-9]/g, function (d) {
-      return AR_DIGITS.charAt(+d);
-    });
-  }
-
   /* --------------------------------------------------------------- theme */
 
   var root = document.documentElement;
@@ -266,8 +258,8 @@
   function fileSize(bytes) {
     if (!bytes) return null;
     var mb = bytes / 1048576;
-    if (mb >= 1) return num(mb.toFixed(1)) + " مێگابایت";
-    return num(Math.round(bytes / 1024)) + " کیلۆبایت";
+    if (mb >= 1) return mb.toFixed(1) + " مێگابایت";
+    return Math.round(bytes / 1024) + " کیلۆبایت";
   }
 
   /* A download is a navigation, so it stays an <a>: middle-click, ctrl-click,
@@ -372,12 +364,12 @@
 
     wrap.appendChild(rangeControl(T.size, state.size, 14, 180, 1,
       function (v) { state.size = v; opts.onchange(state); },
-      function (v) { return num(v); }));
+      function (v) { return String(v); }));
 
     if (opts.lineHeight) {
       wrap.appendChild(rangeControl(T.leading, state.lineHeight, 0.9, 2.8, 0.01,
         function (v) { state.lineHeight = v; opts.onchange(state); },
-        function (v) { return num(v.toFixed(2)); }));
+        function (v) { return v.toFixed(2); }));
     }
 
     host.appendChild(bar);
@@ -534,11 +526,11 @@
     var host = document.querySelector("[data-facts]");
     if (!host) return;
     [[T.designer, fam.designerKu],
-     [T.version, num(fam.version)],
-     [T.weights, num(fam.faces.length)],
-     [T.glyphs, num(fam.glyphs)],
+     [T.version, fam.version],
+     [T.weights, String(fam.faces.length)],
+     [T.glyphs, String(fam.glyphs)],
      [T.supports, supportLabel(fam)],
-     [T.suggestedLeading, num(fam.lineHeight.toFixed(2))]
+     [T.suggestedLeading, fam.lineHeight.toFixed(2)]
     ].forEach(function (f) {
       var d = el("div", "fact");
       d.appendChild(el("dt", null, f[0]));
