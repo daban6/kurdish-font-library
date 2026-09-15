@@ -13,7 +13,7 @@ and download.
 | [Aveno](public/fonts/Aveno) | Rabar | Regular, Bold | 1.001 |
 | [K24](public/fonts/K24) | RTLtype | Light, Bold | 1.001 |
 | [Sarkar RB](public/fonts/SarkarRB) | Sarkar Salar | Light, Regular, Bold | 1.001 |
-| [Helix](public/fonts/Helix) | Sirwan Yassin | Regular → Bold (4) | 1.000 |
+| [Helix](public/fonts/Helix) | Sirwan Yassin | Regular → Bold (4) | 1.001 |
 
 All five cover the full Central Kurdish (Sorani) alphabet — ڕ ڵ ۆ ێ ڤ ھ ە —
 with initial, medial and final forms for every joining letter. Lenos and K24 also

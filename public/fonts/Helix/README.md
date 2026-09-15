@@ -1,7 +1,7 @@
 # Helix
 
 A four-weight Kurdish display family. 246 glyphs, kerned in every weight.
-Version 1.000.
+Version 1.001.
 
 **Helix is Peshang Des 5 by Sirwan Yassin, renamed.** The Regular is his drawing,
 untouched.

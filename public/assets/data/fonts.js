@@ -229,7 +229,7 @@ window.FONT_DATA = {
    "reserved": false,
    "cdn": "https://cdn.daban.one/fonts/lenos/1.003",
    "zip": "Lenos-1.003.zip",
-   "zipBytes": 1742974,
+   "zipBytes": 1743186,
    "local": "/fonts/Lenos"
   },
   {
@@ -419,7 +419,7 @@ window.FONT_DATA = {
    "reserved": false,
    "cdn": "https://cdn.daban.one/fonts/aveno/1.001",
    "zip": "Aveno-1.001.zip",
-   "zipBytes": 1108667,
+   "zipBytes": 1108879,
    "local": "/fonts/Aveno"
   },
   {
@@ -614,7 +614,7 @@ window.FONT_DATA = {
    "reserved": true,
    "cdn": "https://cdn.daban.one/fonts/k24/1.001",
    "zip": "K24-1.001.zip",
-   "zipBytes": 345785,
+   "zipBytes": 345995,
    "local": "/fonts/K24"
   },
   {
@@ -801,7 +801,7 @@ window.FONT_DATA = {
    "reserved": false,
    "cdn": "https://cdn.daban.one/fonts/sarkar-rb/1.001",
    "zip": "SarkarRB-1.001.zip",
-   "zipBytes": 262915,
+   "zipBytes": 263127,
    "local": "/fonts/SarkarRB"
   },
   {
@@ -810,7 +810,7 @@ window.FONT_DATA = {
    "designer": "Sirwan Yassin",
    "designerKu": "سیروان یاسین",
    "designerUrl": "https://xoshnus.com",
-   "version": "1.000",
+   "version": "1.001",
    "upm": 2048,
    "glyphs": 246,
    "lineHeight": 1.297,
@@ -898,8 +898,8 @@ window.FONT_DATA = {
     "latinDigits": []
    },
    "reserved": true,
-   "cdn": "https://cdn.daban.one/fonts/helix/1.000",
-   "zip": "Helix-1.000.zip",
+   "cdn": "https://cdn.daban.one/fonts/helix/1.001",
+   "zip": "Helix-1.001.zip",
    "zipBytes": null,
    "local": "/fonts/Helix"
   }
