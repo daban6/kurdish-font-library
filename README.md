@@ -13,10 +13,14 @@ and download.
 | [Aveno](public/fonts/Aveno) | Rabar | Regular, Bold | 1.001 |
 | [K24](public/fonts/K24) | RTLtype | Light, Bold | 1.001 |
 | [Sarkar RB](public/fonts/SarkarRB) | Sarkar Salar | Light, Regular, Bold | 1.001 |
+| [Helix](public/fonts/Helix) | Sirwan Yassin | Regular → Bold (4) | 1.000 |
 
-All four cover the full Central Kurdish (Sorani) alphabet — ڕ ڵ ۆ ێ ڤ ھ ە —
+All five cover the full Central Kurdish (Sorani) alphabet — ڕ ڵ ۆ ێ ڤ ھ ە —
 with initial, medial and final forms for every joining letter. Lenos and K24 also
 cover the Kurmanji (Hawar) Latin alphabet; Aveno and Sarkar RB are Sorani only.
+Helix carries no Latin and no digits at all, by design, and its three heavier
+weights are emboldened by machine rather than drawn — see
+[its README](public/fonts/Helix/README.md).
 
 ## Formats
 
@@ -27,7 +31,7 @@ cover the Kurmanji (Hawar) Latin alphabet; Aveno and Sarkar RB are Sorani only.
 | `WEB/WOFF2/` | web |
 | `WEB/WOFF/` | web, older browsers |
 
-Sarkar RB has no `OTF/`: it is distributed as TrueType only, and no outline here
+Sarkar RB and Helix have no `OTF/`: both are TrueType only, and no outline here
 is converted from one flavour to another.
 
 Download a family from [fonts.daban.one](https://fonts.daban.one), or take
@@ -49,7 +53,7 @@ See [LICENSING.md](LICENSING.md) for the position on each family.
 
 ## Credits
 
-Typefaces by **Sirwan Yassin** (Lenos), **Rabar** (Aveno), **RTLtype** (K24) and
-**Sarkar Salar** (Sarkar RB).
+Typefaces by **Sirwan Yassin** (Lenos, and Peshang Des 5 which is published here
+as Helix), **Rabar** (Aveno), **RTLtype** (K24) and **Sarkar Salar** (Sarkar RB).
 
 Packaging and metadata corrections by Daban, 2026.

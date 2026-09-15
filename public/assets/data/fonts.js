@@ -803,6 +803,105 @@ window.FONT_DATA = {
    "zip": "SarkarRB-1.001.zip",
    "zipBytes": 262915,
    "local": "/fonts/SarkarRB"
+  },
+  {
+   "slug": "helix",
+   "name": "Helix",
+   "designer": "Sirwan Yassin",
+   "designerKu": "سیروان یاسین",
+   "designerUrl": "https://xoshnus.com",
+   "version": "1.000",
+   "upm": 2048,
+   "glyphs": 246,
+   "lineHeight": 1.297,
+   "faces": [
+    {
+     "style": "Regular",
+     "weight": 400,
+     "file": "Helix-Regular.woff2",
+     "kern": true
+    },
+    {
+     "style": "Medium",
+     "weight": 500,
+     "file": "Helix-Medium.woff2",
+     "kern": true
+    },
+    {
+     "style": "SemiBold",
+     "weight": 600,
+     "file": "Helix-SemiBold.woff2",
+     "kern": true
+    },
+    {
+     "style": "Bold",
+     "weight": 700,
+     "file": "Helix-Bold.woff2",
+     "kern": true
+    }
+   ],
+   "defaultStyle": "Regular",
+   "kerning": "all weights",
+   "features": [
+    "fina",
+    "init",
+    "isol",
+    "kern",
+    "medi",
+    "rlig"
+   ],
+   "coverage": {
+    "sorani": {
+     "have": [
+      "ئ",
+      "ا",
+      "ب",
+      "پ",
+      "ت",
+      "ج",
+      "چ",
+      "ح",
+      "خ",
+      "د",
+      "ر",
+      "ڕ",
+      "ز",
+      "ژ",
+      "س",
+      "ش",
+      "ع",
+      "غ",
+      "ف",
+      "ڤ",
+      "ق",
+      "ک",
+      "گ",
+      "ل",
+      "ڵ",
+      "م",
+      "ن",
+      "و",
+      "ۆ",
+      "ھ",
+      "ە",
+      "ی",
+      "ێ"
+     ],
+     "total": 33
+    },
+    "kurmanji": {
+     "have": [],
+     "total": 62
+    },
+    "arabicDigits": [],
+    "persianDigits": [],
+    "latinDigits": []
+   },
+   "reserved": true,
+   "cdn": "https://cdn.daban.one/fonts/helix/1.000",
+   "zip": "Helix-1.000.zip",
+   "zipBytes": null,
+   "local": "/fonts/Helix"
   }
  ],
  "cdn": "https://cdn.daban.one/fonts",
